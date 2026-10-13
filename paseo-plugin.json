@@ -1,0 +1,9 @@
+{
+  "id": "todo-board",
+  "media": [],
+  "requirements": {
+    "paseo": ">=0.11.2"
+  },
+  "name": "Todo Board",
+  "description": "Kanban board generated from markdown todo lists in each workspace"
+}
