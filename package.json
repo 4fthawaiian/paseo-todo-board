@@ -1,7 +1,6 @@
 {
-  "name": "todo-board",
-  "private": true,
-  "version": "0.0.0",
+  "name": "paseo-todo-board",
+  "version": "0.1.0",
   "files": [
     "paseo-plugin.json",
     "OVERVIEW.md",
@@ -27,5 +26,14 @@
     "vitest": "^5.0.4",
     "zod": "^4.4.3"
   },
-  "description": "Paseo plugin: kanban board built from markdown todo lists found in each workspace"
+  "description": "Kanban board generated from markdown todo lists in each Paseo workspace",
+  "license": "MIT",
+  "keywords": [
+    "paseo",
+    "paseo-plugin",
+    "kanban",
+    "todo",
+    "markdown",
+    "tasks"
+  ]
 }
