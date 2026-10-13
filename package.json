@@ -35,5 +35,13 @@
     "todo",
     "markdown",
     "tasks"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4fthawaiian/paseo-todo-board.git"
+  },
+  "homepage": "https://github.com/4fthawaiian/paseo-todo-board#readme",
+  "bugs": {
+    "url": "https://github.com/4fthawaiian/paseo-todo-board/issues"
+  }
 }

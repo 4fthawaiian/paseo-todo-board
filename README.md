@@ -15,7 +15,7 @@ It scans the workspace directory for checkbox items in `AGENTS.md`, `TODO.md`, a
 ## Install
 
 ```bash
-paseo plugin install git:bradmccrorey/paseo-todo-board
+paseo plugin install git:4fthawaiian/paseo-todo-board
 ```
 
 or `npm:paseo-todo-board` once published to npm.
