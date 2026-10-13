@@ -10,6 +10,8 @@ It scans the workspace directory for checkbox items in `AGENTS.md`, `TODO.md`, a
 - Drag and drop between columns; checkbox, Start/Back/Done/Reopen actions per card
 - **Start** creates a Paseo agent in the workspace with the task as its prompt and moves the card to in progress
 - `/todo <task>` slash command appends a task to the workspace's todo file
+- New agents get a system-prompt note explaining the marker convention so they keep the board current as they work
+- New workspaces get an empty TODO.md scaffolded
 - Writes back atomically with conflict detection, so agent and human edits never silently clobber each other
 
 ## Install
