@@ -1,12 +1,13 @@
 import { readFile, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { PaseoApi } from "@getpaseo/client";
+import type { PluginHandlerContext } from "@getpaseo/plugin/server";
 import type { z } from "zod";
 import type { Board } from "../shared/model";
 import type { addTaskRpc, setStateRpc } from "../shared/rpc";
 import { withMarker } from "./markdown";
 import { scanWorkspace } from "./scan";
 
+type PaseoApi = PluginHandlerContext["paseo"];
 type SetStateInput = z.infer<typeof setStateRpc.input>;
 type AddTaskInput = z.infer<typeof addTaskRpc.input>;
 
