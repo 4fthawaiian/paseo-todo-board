@@ -64,7 +64,7 @@ export function BoardPanel({ theme, layout, workspaceId, navigation }: PluginWor
   const addTask = useRpc(addTaskRpc);
   const paseo = usePaseo();
   const queryClient = useQueryClient();
-  const [containerWidth, setContainerWidth] = useState(0);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [draft, setDraft] = useState("");
   const [mutationError, setMutationError] = useState<string | null>(null);
   const [startingTaskId, setStartingTaskId] = useState<string | null>(null);
@@ -307,10 +307,12 @@ export function BoardPanel({ theme, layout, workspaceId, navigation }: PluginWor
   const data = board.data;
   const columnWidth = Math.max(
     COLUMN_MIN_WIDTH,
-    containerWidth > 0
-      ? (containerWidth - 24 - COLUMN_GAP * (COLUMNS.length - 1)) / COLUMNS.length
+    containerSize.width > 0
+      ? (containerSize.width - 24 - COLUMN_GAP * (COLUMNS.length - 1)) / COLUMNS.length
       : COLUMN_MIN_WIDTH,
   );
+  // Panel height minus header (~48px) and container padding.
+  const columnHeight = Math.max(200, containerSize.height - 72);
 
   const renderCard = (card: TaskCard) => {
     const done = card.state === "done";
@@ -385,7 +387,10 @@ export function BoardPanel({ theme, layout, workspaceId, navigation }: PluginWor
     <View
       ref={rootRef}
       style={styles.root}
-      onLayout={(event) => setContainerWidth(event.nativeEvent.layout.width)}
+      onLayout={(event) => {
+        const { width, height } = event.nativeEvent.layout;
+        setContainerSize({ width, height });
+      }}
     >
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Todo Board</Text>
@@ -423,7 +428,7 @@ export function BoardPanel({ theme, layout, workspaceId, navigation }: PluginWor
                     styles.column,
                     layout.compact
                       ? { marginBottom: COLUMN_GAP }
-                      : { width: columnWidth },
+                      : { width: columnWidth, height: columnHeight, alignSelf: "flex-start" },
                     dropTarget === column.state && styles.columnDropTarget,
                   ]}
                 >
@@ -451,7 +456,11 @@ export function BoardPanel({ theme, layout, workspaceId, navigation }: PluginWor
                       </Pressable>
                     </View>
                   )}
-                  {cards.map(renderCard)}
+                  {layout.compact ? (
+                    cards.map(renderCard)
+                  ) : (
+                    <ScrollView style={{ flex: 1 }}>{cards.map(renderCard)}</ScrollView>
+                  )}
                   {column.state === "todo" && data.cards.length === 0 && (
                     <View style={styles.empty}>
                       <Text style={styles.emptyText}>
